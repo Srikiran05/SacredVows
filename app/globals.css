@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f0f0f0; /* Light background to match the image */
+  --foreground: #1a1a1a; /* Dark text for visibility on light image */
+  --gold: #d48806; /* Darker gold/bronze for better contrast on light background */
+}
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gold: var(--gold);
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
+}
+
+/* 1. The blurred ambient background (fills the screen) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2; /* Furthest back */
+  background-image: url('/background.jpeg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(25px) brightness(0.5);
+  transform: scale(1.1);
+}
+
+/* 2. The clear, centered image (sits on top of the blur) */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Behind content, but in front of blur */
+  background-image: url('/background.jpeg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain; /* Shows full image without stretching */
+  transition: opacity 0.5s ease-in-out; /* Smooth fade toggle */
+}
+
+/* When navigating away from home, hide the sharp background so only blur remains */
+body.blur-background-active::after {
+  opacity: 0;
+}
+
+/* Custom utilities */
+.text-gold {
+  color: var(--gold);
+}
