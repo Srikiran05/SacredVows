@@ -1,27 +1,50 @@
 # #Saga – Wedding Archive 🎞️✨
 
-#Saga is a modern wedding media archive platform that allows guests to upload and share photos & videos from special events.
+A modern wedding media archive platform built with Next.js that allows guests to upload and share photos and videos from special events. Designed to be elegant, responsive, and scalable for multiple weddings.
 
-Built with Next.js, Tailwind CSS, and Framer Motion, this platform provides a smooth, elegant, and mobile-optimized experience.
+<br>
 
----
+## 📂 Project Structure
 
-## ✨ Features
+    saga-wedding-archive/
+    │
+    ├── app/
+    │   ├── layout.js              # Root layout configuration
+    │   ├── page.js                # Main landing page
+    │   ├── globals.css            # Global styles
+    │   ├── api/
+    │   │   ├── upload/            # Presigned upload API route
+    │   │   └── gallery/           # Media fetch API route
+    │
+    ├── components/
+    │   ├── UploadDropzone.jsx     # File upload component
+    │   ├── MediaGallery.jsx       # Photo & video gallery component
+    │
+    ├── public/                    # Static assets
+    ├── .gitignore                 # Ignored files
+    ├── package.json               # Project dependencies
+    ├── README.md                  # Project documentation
 
-- 📸 Upload photos & videos
-- ☁️ Secure cloud storage integration
-- 🖼️ Dedicated Photo & Video galleries
-- 📱 Fully responsive (mobile optimized)
-- 🎨 Smooth animations with Framer Motion
-- 🔒 Clean UI with modern glassmorphism design
+<br>
 
----
+## 🛠 Prerequisites
 
-## 🚀 Tech Stack
+Node.js 18+  
+Download from: https://nodejs.org
 
-- **Next.js (App Router)**
-- **React**
-- **Tailwind CSS**
-- **Framer Motion**
-- **Lucide Icons**
-- **Google Cloud Storage**
+Git  
+Download from: https://git-scm.com
+
+Cloud Storage Account  
+(Example: AWS S3 / Google Cloud Storage)
+
+<br>
+
+## ⚡️ Quickstart
+
+
+```bash
+git clone https://github.com/YOUR_USERNAME/saga-wedding-archive.git
+cd saga-wedding-archive
+npm install
+npm run dev
