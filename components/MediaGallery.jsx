@@ -60,7 +60,7 @@ export default function MediaGallery({ type }) {
               )}
               
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2 cursor-pointer">
-                  <a href={item.url} download className="text-xs text-white underline">Download</a>
+                  <a href={item.downloadUrl} className="text-xs text-white underline">Download</a>
               </div>
             </motion.div>
           ))}

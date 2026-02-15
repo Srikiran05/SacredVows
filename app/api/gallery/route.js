@@ -27,24 +27,27 @@ export async function GET(request) {
 
     // Generate Signed URLs for viewing
     const filesWithUrls = await Promise.all(filtered.map(async (file) => {
-      const [url] = await file.getSignedUrl({
-        version: 'v4',
-        action: 'read',
-        expires: Date.now() + 60 * 60 * 1000, // 1 hour
-      });
+  const [url] = await file.getSignedUrl({
+    version: 'v4',
+    action: 'read',
+    expires: Date.now() + 60 * 60 * 1000,
+  });
 
-      return {
-        key: file.name,
-        url,
-        // metadata might require a separate fetch (getMetadata()), 
-        // but the File object has minimal info.
-        // For simple list, we usually don't have LastModified directly in the simple File object 
-        // without an extra call or using the response header approach.
-        // However, `file.metadata` is populated after `getFiles`? 
-        // Yes, `getFiles` populates metadata.
-        lastModified: file.metadata.updated || new Date().toISOString(), 
-      };
-    }));
+  const [downloadUrl] = await file.getSignedUrl({
+    version: 'v4',
+    action: 'read',
+    expires: Date.now() + 60 * 60 * 1000,
+    responseDisposition: `attachment; filename="${file.name.split('/').pop()}"`
+  });
+
+  return {
+    key: file.name,
+    url,
+    downloadUrl,
+    lastModified: file.metadata.updated || new Date().toISOString(),
+  };
+}));
+
 
     return NextResponse.json({ files: filesWithUrls });
   } catch (error) {
